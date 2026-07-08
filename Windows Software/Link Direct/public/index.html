@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Link — WiFi Transfer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="scanlines"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">◉</span>
+    <span class="brand-name">LINK</span>
+  </div>
+  <div class="conn-status" id="connStatus">
+    <span class="dot" id="connDot"></span>
+    <span id="connText">connecting…</span>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="heroPanel">
+    <div class="hero-info">
+      <p class="eyebrow">this device is reachable at</p>
+      <h1 class="address" id="addressText">—</h1>
+      <p class="hint">Open this address in a browser on your other device — same WiFi network required.</p>
+    </div>
+    <div class="qr-wrap">
+      <div id="qrCanvas" style="width:152px;height:152px;"></div>
+    </div>
+  </section>
+
+  <div class="alt-addresses" id="altAddresses" hidden>
+    <p class="alt-label">Multiple network adapters detected — if the address above doesn't work, try another:</p>
+    <div class="alt-list"></div>
+  </div>
+
+  <details class="help-panel">
+    <summary>Phone can't connect? Tap here</summary>
+    <div class="help-body">
+      <p><strong>1. Wrong address picked</strong> — if your PC has more than one network adapter (WiFi + Ethernet + VPN, etc.), the address shown may not be the hotspot-facing one. Check the "Multiple network adapters detected" box above and try each address listed there.</p>
+      <p><strong>2. Windows Firewall</strong> — the first time you run this, Windows may block it, especially since hotspot networks are often set to "Public." Re-run <code>start-windows.bat</code> and approve the permission popup if one appears.</p>
+      <p><strong>3. Faster transfers (5GHz)</strong> — whichever device is hosting the hotspot, check its hotspot settings for a band option (e.g. "AP Band: 5GHz" on Android). Both devices must support 5GHz for this to work, and it usually gives noticeably faster transfer speeds than 2.4GHz once connected.</p>
+      <p><strong>4. Double-check the port</strong> — the address must include <code>:8080</code> at the end, exactly as shown above.</p>
+    </div>
+  </details>
+
+  <section class="panel drop-panel" id="dropPanel">
+    <input type="file" id="fileInput" multiple hidden>
+    <div class="drop-zone" id="dropZone">
+      <div class="drop-icon">⇪</div>
+      <p class="drop-title">Drop files to send</p>
+      <p class="drop-sub">or tap to choose · sends straight to every connected device</p>
+    </div>
+  </section>
+
+  <section class="transfers" id="transfersSection" hidden>
+    <p class="section-label">Sending</p>
+    <div class="transfer-list" id="transferList"></div>
+  </section>
+
+  <section class="files-section">
+    <div class="section-head">
+      <p class="section-label">Available on the network</p>
+      <span class="file-count" id="fileCount"></span>
+    </div>
+    <div class="file-list" id="fileList">
+      <p class="empty-state" id="emptyState">Nothing shared yet. Send a file from either device and it'll show up here for both.</p>
+    </div>
+  </section>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script src="qrcode-lib.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "wifi-transfer",
+  "version": "1.0.0",
+  "description": "Fast local WiFi file transfer between devices",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}
